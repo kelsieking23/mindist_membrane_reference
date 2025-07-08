@@ -1,0 +1,1 @@
+Submission dir: D:\Work\scripts\mindist_membrane_referencef: .\example_files\example_trajectory.xtcs: .\example_files\example_topology.pdbresidue_ndx: .\example_files\residue_ndx.ndxreference_ndx: .\example_files\ref_idx_membrane.ndxref_id: POPCstride: 1use_ref_com: Falseo: .\example_files\example_output.npylog: .\example_files\example.logquiet: Falseversion: False

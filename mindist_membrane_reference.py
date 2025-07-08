@@ -70,7 +70,12 @@ if __name__ == '__main__':
 The inputs (-residue_ndx and -reference_ndx) are GROMACS index files. For -residue_ndx, this index file can contain any amount of atom groups. For each index group, the COM will be computed, and the minimum distance between the COM
 and the atoms specified in -reference_ndx will be computed (for each frame of the supplied trajectory). For -reference_ndx: it is reccomended that this index file contains any number of lipid headgroup atoms to speed up the calculation. 
 '''
-    parser = argparse.ArgumentParser(description=description)
+    epilog = '''Example usage:\n
+    
+python mindist_membrane_reference.py -f example_files/example_trajectory.xtc -s example_files/example_topology.pdb -residue_ndx example_files/residue_ndx.ndx -reference_ndx example_files/ref_idx_membrane.ndx  
+-ref_id POPC -o example_files/example_output.npy --log example_files/example.log
+'''
+    parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument('-f', type=str, help='trajectory file (e.g. .xtc, .trr, etc)')
     parser.add_argument('-s', type=str, help='topology (.pdb)')
     parser.add_argument('-residue_ndx', type=str, help='GROMACS index file containing residues (or groups) of interest. can have any amount of groups. for each index group, the COM will be taken, and minimum distance between the COM and the reference index will be calculated. ')
