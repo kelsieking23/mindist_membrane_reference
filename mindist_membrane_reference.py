@@ -5,7 +5,7 @@ import numpy as np
 import time
 import sys
 
-__version__ = 1.0
+__version__ = 1.1
 '''
 This is a script that is meant to calculate minimum distance matrices between several single-point subtrajectories.
 The intended implementation is to calculate distances between:
@@ -71,7 +71,7 @@ The inputs (-residue_ndx and -reference_ndx) are GROMACS index files. For -resid
 and the atoms specified in -reference_ndx will be computed (for each frame of the supplied trajectory). For -reference_ndx: it is reccomended that this index file contains any number of lipid headgroup atoms to speed up the calculation. 
 '''
     epilog = '''Example usage:\n
-    
+
 python mindist_membrane_reference.py -f example_files/example_trajectory.xtc -s example_files/example_topology.pdb -residue_ndx example_files/residue_ndx.ndx -reference_ndx example_files/ref_idx_membrane.ndx  
 -ref_id POPC -o example_files/example_output.npy --log example_files/example.log
 '''
@@ -179,8 +179,8 @@ python mindist_membrane_reference.py -f example_files/example_trajectory.xtc -s 
     end = time.time()
     if not args.quiet:
         print('Distance matrix generated. Time elapsed: {:.2f} minutes\n'.format((end-start)/60))
-        print('Reference group had {} atoms (axis 1), and there are {} residues (axis 2).'.format(residue_coms.shape[1], reference_atoms.shape[1]))
-        print('Calculating minimum distances with respect to residues (axis=2) will result in array shape ({}, {})'.format(residue_coms.shape[0], residue_coms.shape[1]))
+        print('There are {} frames in the trajectory, (axis=0) {} specified residue groups (axis 1), and {} specified reference atoms (axis 2).'.format(distances.shape[0], residue_coms.shape[1], reference_atoms.shape[1]))
+        print('Calculating minimum distances with respect to residues (axis=2) over all frames (axis=0) will result in array shape ({}, {})'.format(residue_coms.shape[0], residue_coms.shape[1]))
         print('Finding minima...')
     mindist = np.min(distances, axis=1)
     if not args.quiet:
