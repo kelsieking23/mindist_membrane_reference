@@ -151,7 +151,7 @@ python mindist_membrane_reference.py -f example_files/example_trajectory.xtc -s 
         ref_idx = [int(i)-1 for i in ref_ndx.types[args.ref_id]]
     else:
         ref_id = list(ref_ndx.types.keys())[0]
-        if not args.quieterbose:
+        if not args.quiet:
             print('-ref_id not specified. using {} as the reference group'.format(ref_id))
         ref_idx = [int(i)-1 for i in ref_ndx.types[ref_id]]
     ref_traj = traj.atom_slice(ref_idx)
